@@ -1,0 +1,40 @@
+/* LAYOUT, GRID E ESPAÇAMENTOS */
+header {
+  background-color: var(--cor-fundo);
+}
+
+/* Imagem com texto lateral */
+.imagem-ajustada-wrapper {
+  width: 65%;
+  height: auto;
+  position: relative;
+  display: inline-block;
+  top: -5px;
+  left: -65px;
+}
+
+.texto-ajustado {
+  margin-left: -80px;
+  margin-top: 80px;
+}
+
+/*Seção 1 - Mobile com fade*/
+.vertical-slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.fade-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+.fade-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

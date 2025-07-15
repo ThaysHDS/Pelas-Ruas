@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeria Criativa</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 960px;
+      padding: 40px 0;
+    }
+
+    .swiper-slide {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.4s ease;
+    }
+
+    .swiper-slide:hover img {
+      transform: scale(1.05);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #fff;
+    }
+
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.6;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #f0f0f0;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="d-flex justify-content-center">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- SLIDES -->
+        <div class="swiper-slide"><img src="img/Luis1.jpg" alt="Foto 1"></div>
+        <div class="swiper-slide"><img src="img/Luis2.jpg" alt="Foto 2"></div>
+        <div class="swiper-slide"><img src="img/Luis3.jpg" alt="Foto 3"></div>
+        <div class="swiper-slide"><img src="img/Luis4.jpg" alt="Foto 4"></div>
+        <div class="swiper-slide"><img src="img/Luis5.jpg" alt="Foto 5"></div>
+        <div class="swiper-slide"><img src="img/Luis1.jpg" alt="Foto 6"></div>
+        <div class="swiper-slide"><img src="img/foto7.jpg" alt="Foto 7"></div>
+      </div>
+
+      <!-- Botões de navegação -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+      <!-- Paginação -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      grabCursor: true,
+      centeredSlides: true,
+      spaceBetween: 30,
+      slidesPerView: 1,
+      zoom: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

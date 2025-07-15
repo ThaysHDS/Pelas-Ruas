@@ -1,0 +1,85 @@
+/* ESTILOS ESPECÍFICOS OU DE EXCEÇÃO */
+/* Parallax */
+.parallax-section {
+  position: relative;
+  background-image: url("../img/Luiz3.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.parallax-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.parallax-section h2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sombras no texto pra melhorar a leitura */
+.shadow-text {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Galeria central alta */
+.custom-tall-center {
+  height: calc(100% + 60px);
+  margin-bottom: -20px;
+  z-index: 2;
+  position: relative;
+}
+
+.fancybox__container .fancybox__slide {
+  padding-top: 10px;
+}
+
+/* Revelação fotográfica (com hover) */
+.photo-reveal {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  max-width: 250px;
+  margin: 1rem;
+  text-align: center;
+}
+
+.reveal-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  filter: grayscale(100%) blur(10px);
+  opacity: 0;
+  transition: filter 2s ease, opacity 2s ease;
+  display: block;
+}
+
+.photo-reveal:hover .reveal-image {
+  filter: grayscale(0%) blur(0);
+  opacity: 1;
+}
+
+.caption {
+  color: var(--cor-texto-cinza);
+}
+
+
+/* Classe para mostrar imagem no mobile */
+.photo-reveal.show .reveal-image {
+  filter: grayscale(0) blur(0);
+  opacity: 1;
+}
+

@@ -1,0 +1,119 @@
+/* COMPONENTES REUTILIZÁVEIS */
+/* Links de navegação */
+.nav-link {
+  display: inline-block;
+  border-radius: 80px;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--cor-clara);
+  color: #000;
+}
+
+/* Botão de voltar ao topo */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--cor-clara);
+  color: var(--cor-escura);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: none; 
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+}
+
+.scroll-top-btn i {
+  position: relative;
+  top: 6px;   
+  left: 13px;   
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Ajustes de navegação */
+.navbar-nav .nav-link {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar {
+  align-items: center;
+  min-height: 80px;
+}
+
+/*Sombra*/
+.shadow-text {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/*Efeito hover em imagens*/
+.img-hover {
+  overflow: hidden;
+  position: relative; 
+}
+
+.img-hover img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.img-hover:hover img {
+  transform: scale(1.05);
+  filter: brightness(85%);
+}
+
+/*Cartão com efeito tilt*/
+.tilt-cell {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+  transition: box-shadow 0.3s;
+}
+
+.tilt-cell:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.tilt-cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.tilt-cell:hover img {
+  transform: scale(1.08);
+  filter: brightness(90%);
+}
+
+/* Componente: Drag & Drop */
+.sortable-ghost {
+  opacity: 0.5;
+}
+
+/* Footer */
+footer {
+  background-color: var(--cor-primaria);
+  color: var(--cor-clara);
+}
+
+.footer-line {
+  border-top: 2px solid var(--cor-clara);
+}
+
+.slogan-footer {
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 5px;
+}
+

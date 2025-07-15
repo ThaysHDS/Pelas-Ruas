@@ -1,0 +1,13 @@
+/* Variáveis de cor e temas */
+:root {
+  --cor-fundo: #e3e3e3;
+  --cor-clara: #f5f5f5;
+  --cor-escura: #111111;
+  --cor-hover: #36506d;
+  --cor-primaria: #7097a5;
+  --cor-secundaria: #fd6043;
+  --cor-terciaria: d8d0c7;
+  --cor-texto-cinza: #697077;
+
+  --fonte-principal: "DM Sans", sans-serif;
+}

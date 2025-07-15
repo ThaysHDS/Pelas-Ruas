@@ -1,0 +1,124 @@
+/* RESPONSIVE.CSS - Estilos responsivos */
+/* Telas pequenas */
+@media (max-width: 576px) {
+  /* Footer */
+  footer .logo-footer {
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 0;
+  }
+  .slogan-footer {
+    margin-top: 0;
+  }
+
+  /* Navegação */
+  .navbar-brand img {
+    height: 40px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  /* Títulos */
+  .section-title {
+    font-size: 28px;
+  }
+}
+
+/* Telas médias */
+@media (max-width: 768px) {
+  /* Parallax */
+  .parallax-section {
+    background-attachment: scroll;
+    height: 50vh;
+  }
+
+  /* Imagens ajustadas */
+  .imagem-ajustada-wrapper {
+    top: 0;
+    left: 0;
+  }
+
+  .texto-ajustado {
+    margin-left: 0;
+  }
+
+  /* Galeria de imagens */
+  .img-hover {
+    height: 200px;
+  }
+
+  .col-md-4:nth-child(2) img {
+    transform: scale(1.05);
+  }
+
+  .imagem-ajustada-wrapper {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Sobre */
+  #sobre p.lead {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  #sobre.texto-ajustado {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  /* Estilo carrossel touch */
+  .photo-gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .photo-reveal {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    margin: 0;
+  }
+
+  /* Animações (fade-in) */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /*Gyro interatividade mobile*/
+  .tilt-cell {
+    transition: transform 0.2s ease;
+    will-change: transform;
+    perspective: 1000px;
+  }
+
+/* Reveladas no mobile SEM JS */
+  .reveal-image {
+    filter: grayscale(0%) blur(0) !important;
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Hover de imagem em desktop */
+  .photo-reveal:hover .reveal-image {
+    filter: grayscale(0%) blur(0);
+    opacity: 1;
+  }
+}
+
