@@ -1,4 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const isMobile = window.innerWidth < 768;
+
+  // Função para inicializar o SortableJS se a tela for grande
+  function initializeSortable() {
+    const gallery = document.getElementById("interactive-gallery");
+    if (gallery && !isMobile) {
+      new Sortable(gallery, {
+        animation: 200,
+        draggable: ".col-6, .col-12",
+        ghostClass: "sortable-ghost",
+      });
+    }
+  }
+
+  // Inicializa o SortableJS
+  initializeSortable();
+
+  // Recarrega o SortableJS se a janela for redimensionada
+  window.addEventListener("resize", function() {
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.col-6, .col-12').forEach(item => {
+        item.classList.remove('sortable-ghost');
+      });
+    } else {
+      initializeSortable();
+    }
+  });
+
   // Botão de voltar ao topo
   const scrollBtn = document.querySelector(".scroll-top-btn");
 
@@ -55,13 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // SortableJS para galeria interativa
-  new Sortable(document.getElementById("interactive-gallery"), {
-    animation: 200,
-    draggable: ".col-6, .col-12",
-    ghostClass: "sortable-ghost",
-  });
-
   // Fancybox
   Fancybox.bind("[data-fancybox]", {
     dragToClose: true,
@@ -105,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Aplica o fade apenas se for mobile
         if (window.innerWidth < 768) {
           setTimeout(() => {
-            item.classList.add("show"); // ativa o fade-in
-          }, 100 * index); // atraso em cascata (opcional)
+            item.classList.add("show");
+          }, 100 * index); 
         }
       });
 
@@ -124,20 +145,18 @@ document.addEventListener("DOMContentLoaded", function () {
       placement: "right",
       fallbackPlacements: ["top", "left"],
       boundary: "viewport",
-      trigger: "manual", // vamos controlar manualmente a abertura e fechamento
+      trigger: "manual",
     });
 
     el.addEventListener("mouseenter", () => {
-      tooltip.show(); // mostra tooltip
-
-      // esconde depois de 2 segundos
+      tooltip.show(); 
       setTimeout(() => {
         tooltip.hide();
       }, 2000);
     });
 
     el.addEventListener("mouseleave", () => {
-      tooltip.hide(); // esconde se o mouse sair antes do timeout
+      tooltip.hide(); 
     });
   });
 });

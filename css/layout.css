@@ -3,19 +3,31 @@ header {
   background-color: var(--cor-fundo);
 }
 
-/* Imagem com texto lateral */
-.imagem-ajustada-wrapper {
-  width: 65%;
-  height: auto;
-  position: relative;
-  display: inline-block;
-  top: -5px;
-  left: -65px;
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+/*Seção 2 - Alinhamento*/
+#sobre {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .texto-ajustado {
-  margin-left: -80px;
-  margin-top: 80px;
+  padding-top: 100px;
+}
+
+.container-limite {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 /*Seção 1 - Mobile com fade*/
@@ -38,3 +50,5 @@ header {
   height: 100%;
   object-fit: cover;
 }
+
+
