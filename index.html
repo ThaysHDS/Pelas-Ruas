@@ -83,14 +83,25 @@
       <img id="logo-img" src="img/logo.svg" alt="Logo Pelas Ruas - Street Photography" height="60" />
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Botões à direita (mobile): tema + menu hamburguer -->
+    <div class="d-flex align-items-center d-lg-none ms-auto">
+      <!-- Botão de tema (mobile) -->
+      <button id="toggle-dark" class="btn btn-outline-light me-2 px-3 py-2" title="Alternar tema" aria-label="Alternar tema">
+        <i class="fas fa-moon"></i>
+      </button>
 
+      <!-- Botão hamburguer -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Menu colapsável -->
     <div class="collapse navbar-collapse justify-content-end text-end" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item me-2">
-          <button id="toggle-dark" class="btn btn-outline-light px-3 py-2" title="Alternar tema">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <!-- Botão de tema para desktop -->
+        <li class="nav-item me-2 d-none d-lg-block">
+          <button id="toggle-dark-desktop" class="btn btn-outline-light px-3 py-2" title="Alternar tema" aria-label="Alternar tema">
             <i class="fas fa-moon"></i>
           </button>
         </li>

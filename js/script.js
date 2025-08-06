@@ -1,27 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const isMobile = window.innerWidth < 768;
+  // Constantes e seletores iniciais
+  const MOBILE_BREAKPOINT = 768;
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
   const header = document.querySelector("header.navbar");
-  const btn = document.getElementById("toggle-dark");
+  const btnMobile = document.getElementById("toggle-dark"); // botão de tema no mobile
+  const btnDesktop = document.getElementById("toggle-dark-desktop"); // botão de tema no desktop
   const logoImg = document.getElementById("logo-img");
+  let sortableInstance = null;
 
-  // Função para trocar a logo conforme o tema
+  // Atualiza a logo conforme o tema
   function updateLogo() {
     if (!logoImg) return;
-    if (document.body.classList.contains("dark-mode")) {
-      logoImg.src = "../img/logo_f5f5f5.svg";
-    } else {
-      logoImg.src = "../img/logo.svg";
-    }
+    logoImg.src = document.body.classList.contains("dark-mode")
+      ? "img/logo_f5f5f5.svg"
+      : "img/logo.svg";
   }
 
-  // Inicializa o modo escuro
+  // Inicializa o dark mode com base no localStorage ou preferências do navegador
   initDarkMode();
 
-  // Inicializa o SortableJS se não for mobile
+  // Inicializa a funcionalidade de ordenação com SortableJS (desktop apenas)
   function initializeSortable() {
     const gallery = document.getElementById("interactive-gallery");
-    if (gallery && !isMobile) {
-      new Sortable(gallery, {
+    if (gallery && !isMobile && !sortableInstance) {
+      sortableInstance = new Sortable(gallery, {
         animation: 200,
         draggable: ".col-6, .col-12",
         ghostClass: "sortable-ghost",
@@ -31,8 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   initializeSortable();
 
+  // Remove classes de ordenação ao redimensionar para mobile, reinicializa ao voltar para desktop
   window.addEventListener("resize", function () {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < MOBILE_BREAKPOINT) {
       document.querySelectorAll(".col-6, .col-12").forEach((item) => {
         item.classList.remove("sortable-ghost");
       });
@@ -41,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Botão de voltar ao topo
+  // Botão de voltar ao topo aparece ao rolar para baixo
   const scrollBtn = document.querySelector(".scroll-top-btn");
 
   window.addEventListener("scroll", () => {
@@ -56,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // AOS
+  // Inicialização do AOS (animações de scroll)
   AOS.init();
 
-  // Vanilla Tilt para desktop apenas
-  if (window.innerWidth >= 768) {
+  // Vanilla Tilt no desktop para dar efeito de tilt aos elementos
+  if (window.innerWidth >= MOBILE_BREAKPOINT) {
     VanillaTilt.init(document.querySelectorAll(".tilt-cell"), {
       max: 15,
       speed: 400,
@@ -69,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Gyroscópio no mobile
-  if (window.innerWidth < 768 && window.DeviceOrientationEvent) {
+  // Efeito de giroscópio no mobile para elementos tilt
+  if (isMobile && window.DeviceOrientationEvent) {
     const handleOrientation = (event) => {
       const gamma = event.gamma || 0;
       const beta = event.beta || 0;
@@ -82,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     };
 
+    // Solicita permissão no iOS
     if (typeof DeviceOrientationEvent.requestPermission === "function") {
       DeviceOrientationEvent.requestPermission()
         .then((response) => {
@@ -97,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Fancybox
+  // Fancybox para imagens ou conteúdos com modal animado
   Fancybox.bind("[data-fancybox]", {
     dragToClose: true,
     groupAll: true,
@@ -106,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
     hideClass: "fancybox-zoomOut",
   });
 
-  // SLIDER MOBILE
-  if (window.innerWidth < 768) {
+  // Slider automático para elementos fade no mobile
+  if (isMobile) {
     const slides = document.querySelectorAll(".fade-slide");
     let current = 0;
 
@@ -118,15 +122,16 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    show(current);
-
-    setInterval(() => {
-      current = (current + 1) % slides.length;
+    if (slides.length > 0) {
       show(current);
-    }, 4000);
+      setInterval(() => {
+        current = (current + 1) % slides.length;
+        show(current);
+      }, 4000);
+    }
   }
 
-  // Botão “Veja Mais” com fade somente no mobile
+  // Botão “Veja mais” revela itens ocultos no grid
   const btnVerMais = document.getElementById("verMaisBtn");
   if (btnVerMais) {
     btnVerMais.addEventListener("click", () => {
@@ -136,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       hiddenItems.forEach((item, index) => {
         item.classList.remove("d-none");
-        if (window.innerWidth < 768) {
+        if (isMobile) {
           setTimeout(() => {
             item.classList.add("show");
           }, 100 * index);
@@ -147,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Tooltips Bootstrap
+  // Tooltips Bootstrap com desaparecimento automático
   const tooltipTriggerList = document.querySelectorAll(
     '[data-bs-toggle="tooltip"]'
   );
@@ -172,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Revelação de Fotografia
+  // Efeito de revelação em hover nas fotos com classe .photo-reveal
   document.querySelectorAll(".photo-reveal").forEach((container) => {
     const img = container.querySelector(".reveal-image");
 
@@ -183,61 +188,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Função para iniciar dark mode e configurar o header, botão e logo
+  // Inicializa dark mode com base no localStorage ou sistema
   function initDarkMode() {
     const prefersDark =
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const currentMode = localStorage.getItem("theme");
 
-    if (currentMode === "dark") {
-      document.body.classList.add("dark-mode");
-      header.classList.add("navbar-dark");
-      header.classList.remove("navbar-light");
-      if (btn) {
-        btn.classList.remove("btn-outline-dark");
-        btn.classList.add("btn-outline-light");
-      }
-    } else {
-      document.body.classList.remove("dark-mode");
-      header.classList.add("navbar-light");
-      header.classList.remove("navbar-dark");
-      if (btn) {
-        btn.classList.remove("btn-outline-light");
-        btn.classList.add("btn-outline-dark");
-      }
-    }
+    const isDark = currentMode === "dark" || (!currentMode && prefersDark);
+    document.body.classList.toggle("dark-mode", isDark);
+    header.classList.toggle("navbar-dark", isDark);
+    header.classList.toggle("navbar-light", !isDark);
 
-    updateLogo(); // Atualiza a logo ao iniciar
+    // Aplica classes nos dois botões, se existirem
+    [btnMobile, btnDesktop].forEach((btn) => {
+      if (!btn) return;
+      btn.classList.toggle("btn-outline-light", isDark);
+      btn.classList.toggle("btn-outline-dark", !isDark);
 
-    if (btn) {
-      btn.addEventListener("click", function () {
+      // Evento de clique para alternar tema
+      btn.addEventListener("click", () => {
         toggleDarkMode();
-        const isDark = document.body.classList.contains("dark-mode");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
+        const newMode = document.body.classList.contains("dark-mode")
+          ? "dark"
+          : "light";
+        localStorage.setItem("theme", newMode);
       });
-    }
+    });
+
+    updateLogo(); // Atualiza logo com base no tema
   }
 
+  // Alterna dark/light mode
   function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
+    const isDark = !document.body.classList.contains("dark-mode");
+    document.body.classList.toggle("dark-mode", isDark);
+    header.classList.toggle("navbar-dark", isDark);
+    header.classList.toggle("navbar-light", !isDark);
 
-    if (document.body.classList.contains("dark-mode")) {
-      header.classList.add("navbar-dark");
-      header.classList.remove("navbar-light");
-      if (btn) {
-        btn.classList.remove("btn-outline-dark");
-        btn.classList.add("btn-outline-light");
-      }
-    } else {
-      header.classList.add("navbar-light");
-      header.classList.remove("navbar-dark");
-      if (btn) {
-        btn.classList.remove("btn-outline-light");
-        btn.classList.add("btn-outline-dark");
-      }
-    }
+    // Atualiza classes dos botões
+    [btnMobile, btnDesktop].forEach((btn) => {
+      if (!btn) return;
+      btn.classList.toggle("btn-outline-light", isDark);
+      btn.classList.toggle("btn-outline-dark", !isDark);
+    });
 
-    updateLogo(); // Atualiza a logo ao alternar tema
+    updateLogo(); // Atualiza logo com base no novo tema
   }
 });
