@@ -63,23 +63,41 @@
   object-fit: cover;
   filter: grayscale(100%) blur(10px);
   opacity: 0;
-  transition: filter 2s ease, opacity 2s ease;
+  transition: filter 1s ease, opacity 1s ease;
   display: block;
 }
 
-.photo-reveal:hover .reveal-image {
+/* Revela no hover OU se já tiver sido revelada antes */
+.photo-reveal:hover .reveal-image,
+.reveal-image.show {
   filter: grayscale(0%) blur(0);
   opacity: 1;
 }
 
-.caption {
+.caption,
+.texto-cinza {
   color: var(--cor-texto-cinza);
 }
-
 
 /* Classe para mostrar imagem no mobile */
 .photo-reveal.show .reveal-image {
   filter: grayscale(0) blur(0);
   opacity: 1;
 }
+
+/* Aplicando as variáveis */
+body.dark-mode header {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+
+
+
+
 

@@ -28,8 +28,7 @@
   }
 }
 
-/* Telas médias */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   /* Parallax */
   .parallax-section {
     background-attachment: scroll;
@@ -58,9 +57,7 @@
   .imagem-ajustada-wrapper {
     display: none !important;
   }
-}
 
-@media (max-width: 767.98px) {
   /* Sobre */
   #sobre p.lead {
     margin-top: 0;
@@ -107,10 +104,19 @@
     perspective: 1000px;
   }
 
-/* Reveladas no mobile SEM JS */
+  /* Reveladas no mobile SEM JS */
   .reveal-image {
-    filter: grayscale(0%) blur(0) !important;
-    opacity: 1 !important;
+    filter: grayscale(0%) blur(0);
+    opacity: 1;
+  }
+
+  /* Espaçamento extra no mobile */
+  #secao2 {
+    margin-top: 2rem;
+  }
+
+  #rodape {
+    margin-top: 1.5rem;
   }
 }
 
@@ -121,4 +127,3 @@
     opacity: 1;
   }
 }
-

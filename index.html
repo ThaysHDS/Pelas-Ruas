@@ -9,7 +9,31 @@
   <meta name="description" content="Pelas Ruas é um projeto fotográfico de dois amigos que capturam momentos únicos nas ruas da cidade." />
   <meta name="keywords" content="fotografia de rua, street photography, amizade, Pelas Ruas" />
   <meta name="robots" content="index, follow" />
-  <meta name="author" content="Pelas Ruas" />
+  <meta name="author" content="Luiz Henrique, Willian Villares, Thays Henriques" />
+
+  <!-- JSON-LD para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Pelas Ruas",
+    "description": "Projeto fotográfico de dois amigos que capturam momentos únicos nas ruas da cidade.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Luiz Henrique"
+      },
+      {
+        "@type": "Person",
+        "name": "Willian Villares"
+      },
+      {
+        "@type": "Person",
+        "name": "Thays Henriques"
+      }
+    ]
+  }
+  </script>
 
   <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:title" content="Pelas Ruas - Street Photography" />
@@ -54,9 +78,9 @@
   </a>
 
   <!-- HEADER -->
-  <header class="navbar navbar-expand-lg px-3 px-lg-5 align-items-center">
+  <header class="navbar navbar-expand-lg navbar-light px-3 px-lg-5 align-items-center">
     <a class="navbar-brand" href="#">
-      <img src="img/logo.svg" alt="Logo Pelas Ruas - Street Photography" height="60" />
+      <img id="logo-img" src="img/logo.svg" alt="Logo Pelas Ruas - Street Photography" height="60" />
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu de navegação">
@@ -65,8 +89,13 @@
 
     <div class="collapse navbar-collapse justify-content-end text-end" id="navMenu">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item me-2">
+          <button id="toggle-dark" class="btn btn-outline-light px-3 py-2" title="Alternar tema">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#sobre" aria-current="page">Sobre</a>
+          <a class="nav-link" href="#sobre" aria-current="page">Sobre</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#fotos">Fotos</a>
@@ -125,9 +154,9 @@
 
     <!-- SEÇÃO 2: Texto -->
     <section class="container container-limite my-5 py-2">
-      <div class="row justify-content-center align-items-center g-5">
+      <div id="secao2" class="row justify-content-center align-items-center g-5">
         <div id="sobre" class="col-md-8 texto-ajustado" data-aos="fade-left">
-          <p class="lead text-center">
+          <p class="lead">
             <strong>Willian e Luiz</strong> são dois amigos de longa data que, além de compartilharem boas conversas, têm em comum a paixão pela fotografia.
             Juntos, exploram a cidade, registrando os pequenos grandes momentos do cotidiano com suas câmeras, seja em um pôr do sol na praça, em um café descontraído ou durante um passeio aleatório pelas ruas.
             <br /><br />
@@ -147,7 +176,7 @@
     <!-- SEÇÃO 4: Galeria de imagens -->
     <section id="fotos" class="container my-5">
       <div class="text-center mb-4">
-        <p class="text-muted fst-italic">
+        <p class="texto-cinza fst-italic">
           <i class="fas fa-mouse-pointer me-2"></i>As imagens abaixo são interativas — clique para ver em tela cheia e apreciar os detalhes.
         </p>
       </div>
@@ -242,7 +271,7 @@
   <!-- FOOTER -->
   <footer class="bg-dark text-light py-2 mt-5">
     <div class="container">
-      <div class="row align-items-center">
+      <div id="rodape" class="row align-items-center">
 
         <!-- LOGO -->
         <div class="col-md-4 text-center text-md-start mb-2 mb-md-0">

@@ -6,8 +6,18 @@
   --cor-hover: #36506d;
   --cor-primaria: #7097a5;
   --cor-secundaria: #fd6043;
-  --cor-terciaria: d8d0c7;
+  --cor-terciaria: #d8d0c7;
   --cor-texto-cinza: #697077;
 
   --fonte-principal: "DM Sans", sans-serif;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --cor-fundo: #121212;
+  --cor-texto: #f1f1f1;
+  --cor-card-bg: #1e1e1e;
+  --cor-borda: #333;
+
+  --fonte-principal: "DM Sans", sans-serif; /* pode repetir */
 }
