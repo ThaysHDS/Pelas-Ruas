@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("header.navbar");
   const btnMobile = document.getElementById("toggle-dark"); // botão de tema no mobile
   const btnDesktop = document.getElementById("toggle-dark-desktop"); // botão de tema no desktop
+  const btnHamburguer = document.getElementById("menu-toggle"); // botão hamburguer no mobile
   const logoImg = document.getElementById("logo-img");
   let sortableInstance = null;
 
@@ -201,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     header.classList.toggle("navbar-light", !isDark);
 
     // Aplica classes nos dois botões, se existirem
-    [btnMobile, btnDesktop].forEach((btn) => {
+    [btnMobile, btnDesktop, btnHamburguer].forEach((btn) => {
       if (!btn) return;
       btn.classList.toggle("btn-outline-light", isDark);
       btn.classList.toggle("btn-outline-dark", !isDark);
@@ -227,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
     header.classList.toggle("navbar-light", !isDark);
 
     // Atualiza classes dos botões
-    [btnMobile, btnDesktop].forEach((btn) => {
+    [btnMobile, btnDesktop, btnHamburguer].forEach((btn) => {
       if (!btn) return;
       btn.classList.toggle("btn-outline-light", isDark);
       btn.classList.toggle("btn-outline-dark", !isDark);
