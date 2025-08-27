@@ -9,7 +9,7 @@
 
 .nav-link:hover {
   background-color: var(--cor-clara);
-  color: #000;
+  color: var (--cor-escura);
 }
 
 /* Botão de voltar ao topo */
@@ -76,7 +76,7 @@
 .tilt-cell {
   overflow: hidden;
   border-radius: 12px;
-  background: #111;
+  background: var (--cor-escura);
   transition: box-shadow 0.3s;
 }
 
