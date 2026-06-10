@@ -1,12 +1,34 @@
 document.addEventListener('DOMContentLoaded', function () {
   const MOBILE_BREAKPOINT = 768;
   const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+  
   const header = document.querySelector('header.navbar');
   const btnMobile = document.getElementById('toggle-dark');
   const btnDesktop = document.getElementById('toggle-dark-desktop');
   const btnHamburguer = document.getElementById('menu-toggle');
   const logoImg = document.getElementById('logo-img');
+  const scrollBtn = document.querySelector('.scroll-top-btn');
+  const btnVerMais = document.getElementById('verMaisBtn');
+  const gallery = document.getElementById('interactive-gallery');
+  
   let sortableInstance = null;
+  let carouselInterval = null;
+  let deviceOrientationListener = null;
+  let scrollThrottleTimer = null;
+  let resizeThrottleTimer = null;
+  let tiltCells = [];
+  let lastScrollY = 0;
+
+  function throttle(func, delay) {
+    let lastCall = 0;
+    return function (...args) {
+      const now = Date.now();
+      if (now - lastCall >= delay) {
+        lastCall = now;
+        func.apply(this, args);
+      }
+    };
+  }
 
   function updateLogo() {
     if (!logoImg) return;
@@ -18,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initDarkMode();
 
   function initializeSortable() {
-    const gallery = document.getElementById('interactive-gallery');
     if (gallery && !isMobile && !sortableInstance) {
       sortableInstance = new Sortable(gallery, {
         animation: 200,
@@ -28,24 +49,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function destroySortable() {
+    if (sortableInstance) {
+      sortableInstance.destroy();
+      sortableInstance = null;
+    }
+  }
+
   initializeSortable();
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth < MOBILE_BREAKPOINT) {
+  const handleResize = throttle(function () {
+    const isNowMobile = window.innerWidth < MOBILE_BREAKPOINT;
+    
+    if (isNowMobile && sortableInstance) {
+      destroySortable();
       document.querySelectorAll('.col-6, .col-12').forEach((item) => {
         item.classList.remove('sortable-ghost');
       });
-    } else {
+    } else if (!isNowMobile && !sortableInstance) {
       initializeSortable();
     }
-  });
+  }, 250);
 
-  const scrollBtn = document.querySelector('.scroll-top-btn');
+  window.addEventListener('resize', handleResize);
 
-  window.addEventListener('scroll', () => {
-    if (scrollBtn)
-      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
+  const handleScroll = throttle(function () {
+    if (scrollBtn) {
+      const shouldShow = window.scrollY > 300;
+      if ((lastScrollY > 300) !== shouldShow) {
+        scrollBtn.style.display = shouldShow ? 'block' : 'none';
+        lastScrollY = window.scrollY;
+      }
+    }
+  }, 150);
+
+  window.addEventListener('scroll', handleScroll);
 
   if (scrollBtn) {
     scrollBtn.addEventListener('click', (e) => {
@@ -54,41 +92,62 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  AOS.init();
+  AOS.init({
+    once: false,
+    duration: 800,
+  });
 
   if (window.innerWidth >= MOBILE_BREAKPOINT) {
-    VanillaTilt.init(document.querySelectorAll('.tilt-cell'), {
-      max: 15,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.3,
-    });
+    tiltCells = document.querySelectorAll('.tilt-cell');
+    if (tiltCells.length > 0) {
+      VanillaTilt.init(tiltCells, {
+        max: 15,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.3,
+      });
+    }
   }
 
   if (isMobile && window.DeviceOrientationEvent) {
-    const handleOrientation = (event) => {
-      const gamma = event.gamma || 0;
-      const beta = event.beta || 0;
+    tiltCells = document.querySelectorAll('.tilt-cell');
+    
+    if (tiltCells.length > 0) {
+      let lastGamma = 0;
+      let lastBeta = 0;
+      let rafId = null;
 
-      document.querySelectorAll('.tilt-cell').forEach((el) => {
-        const tiltX = gamma / 2;
-        const tiltY = beta / 4;
-        el.style.transform = `rotateY(${tiltX}deg) rotateX(${-tiltY}deg)`;
-      });
-    };
+      const updateTilt = () => {
+        tiltCells.forEach((el) => {
+          const tiltX = lastGamma / 2;
+          const tiltY = lastBeta / 4;
+          el.style.transform = `rotateY(${tiltX}deg) rotateX(${-tiltY}deg)`;
+        });
+        rafId = null;
+      };
 
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      DeviceOrientationEvent.requestPermission()
-        .then((response) => {
-          if (response === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation);
-          } else {
-            console.warn('Permissão negada para giroscópio.');
-          }
-        })
-        .catch(console.error);
-    } else {
-      window.addEventListener('deviceorientation', handleOrientation);
+      deviceOrientationListener = (event) => {
+        lastGamma = event.gamma || 0;
+        lastBeta = event.beta || 0;
+        
+        if (!rafId) {
+          rafId = requestAnimationFrame(updateTilt);
+        }
+      };
+
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+          .then((response) => {
+            if (response === 'granted') {
+              window.addEventListener('deviceorientation', deviceOrientationListener);
+            } else {
+              console.warn('Permissão negada para giroscópio.');
+            }
+          })
+          .catch(console.error);
+      } else {
+        window.addEventListener('deviceorientation', deviceOrientationListener);
+      }
     }
   }
 
@@ -113,16 +172,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (slides.length > 0) {
       show(current);
-      setInterval(() => {
+      carouselInterval = setInterval(() => {
         current = (current + 1) % slides.length;
         show(current);
       }, 4000);
     }
   }
 
-  const btnVerMais = document.getElementById('verMaisBtn');
   if (btnVerMais) {
+    let isClicked = false;
     btnVerMais.addEventListener('click', () => {
+      if (isClicked) return;
+      isClicked = true;
+
       const hiddenItems = document.querySelectorAll(
         '#interactive-gallery .gallery-item.d-none',
       );
@@ -144,6 +206,8 @@ document.addEventListener('DOMContentLoaded', function () {
     '[data-bs-toggle="tooltip"]',
   );
 
+  const tooltips = new Map();
+
   tooltipTriggerList.forEach((el) => {
     const tooltip = new bootstrap.Tooltip(el, {
       placement: 'right',
@@ -152,20 +216,26 @@ document.addEventListener('DOMContentLoaded', function () {
       trigger: 'manual',
     });
 
+    tooltips.set(el, tooltip);
+    let tooltipTimeout = null;
+
     el.addEventListener('mouseenter', () => {
+      if (tooltipTimeout) clearTimeout(tooltipTimeout);
       tooltip.show();
-      setTimeout(() => {
+      tooltipTimeout = setTimeout(() => {
         tooltip.hide();
       }, 2000);
     });
 
     el.addEventListener('mouseleave', () => {
+      if (tooltipTimeout) clearTimeout(tooltipTimeout);
       tooltip.hide();
     });
   });
 
   document.querySelectorAll('.photo-reveal').forEach((container) => {
     const img = container.querySelector('.reveal-image');
+    if (!img) return;
 
     container.addEventListener('mouseenter', () => {
       if (!img.classList.contains('show')) {
@@ -216,4 +286,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateLogo();
   }
+
+  window.addEventListener('beforeunload', () => {
+    if (carouselInterval) clearInterval(carouselInterval);
+    if (scrollThrottleTimer) clearTimeout(scrollThrottleTimer);
+    if (resizeThrottleTimer) clearTimeout(resizeThrottleTimer);
+    if (deviceOrientationListener) {
+      window.removeEventListener('deviceorientation', deviceOrientationListener);
+    }
+    destroySortable();
+    tooltips.forEach(tooltip => tooltip.dispose());
+  });
 });
