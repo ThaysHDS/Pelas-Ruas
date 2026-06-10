@@ -223,16 +223,11 @@ footer {
   margin-top: 5px;
 }
 
-footer .footer-heading {
+footer h4.footer-heading {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
   margin-top: 1rem;
-}
-
-.caption-visible {
-  color: #e8e8e8;
-  font-size: 0.9rem;
 }
