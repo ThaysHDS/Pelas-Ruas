@@ -50,23 +50,30 @@
   }
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="img/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png" />
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Sans&display=swap" rel="stylesheet" />
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
-  <link rel="stylesheet" href="css/base.css" />
+  
   <link rel="stylesheet" href="css/themes.css" />
-  <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
@@ -124,14 +131,14 @@
         <div class="col-12 col-md-4">
           <a href="img/Will1.webp" data-fancybox="galeria-principal" data-caption="Fotografia por Willian">
             <div class="img-hover h-100">
-              <img src="img/Will1.webp" class="w-100 h-100 object-fit-cover" alt="Copa de árvore florida em destaque, fotografia por Willian" />
+              <img src="img/Will1.webp" class="w-100 h-100 object-fit-cover" alt="Copa de árvore florida em destaque, fotografia por Willian" loading="lazy" />
             </div>
           </a>
         </div>
         <div class="col-12 col-md-4">
           <a href="img/Luiz2.webp" data-fancybox="galeria-principal" data-caption="Fotografia tirada por Luiz" data-bs-toggle="tooltip" data-bs-placement="right" title="Clique para ampliar a imagem">
             <div class="img-hover custom-tall-center position-relative">
-              <img src="img/Luiz2.webp" class="w-100 h-100 object-fit-cover" alt="Cena urbana ao entardecer - Foto por Luiz" />
+              <img src="img/Luiz2.webp" class="w-100 h-100 object-fit-cover" alt="Cena urbana ao entardecer - Foto por Luiz" fetchpriority="high" />
             </div>
           </a>
         </div>
@@ -139,7 +146,7 @@
         <div class="col-12 col-md-4">
           <a href="img/Will2.webp" data-fancybox="galeria-principal" data-caption="Fotografia por Willian">
             <div class="img-hover h-100">
-              <img src="img/Will2.webp" class="w-100 h-100 object-fit-cover" alt="Copa de árvore florida em destaque, fotografia por Willian" />
+              <img src="img/Will2.webp" class="w-100 h-100 object-fit-cover" alt="Copa de árvore florida em destaque, fotografia por Willian" loading="lazy" />
             </div>
           </a>
         </div>
@@ -151,10 +158,10 @@
         <img src="img/Will1.webp" alt="Foto por Willian" fetchpriority="high">
       </div>
       <div class="fade-slide">
-        <img src="img/Luiz2.webp" alt="Foto por Luiz">
+        <img src="img/Luiz2.webp" alt="Foto por Luiz" loading="lazy">
       </div>
       <div class="fade-slide">
-        <img src="img/Will2.webp" alt="Foto por Willian">
+        <img src="img/Will2.webp" alt="Foto por Willian" loading="lazy">
       </div>
     </section>
 
@@ -165,16 +172,10 @@
             <strong>Willian e Luiz</strong> são dois amigos de longa data que, além de compartilharem boas conversas, têm em comum a paixão pela fotografia.
             Juntos, exploram a cidade, registrando os pequenos grandes momentos do cotidiano com suas câmeras, seja em um pôr do sol na praça, em um café descontraído ou durante um passeio aleatório pelas ruas.
             <br /><br />
-            Para eles, a fotografia vai além de uma simples imagem: é uma forma de eternizar memórias, de se conectar com o mundo ao redor e de transformar momentos simples em grandes histórias.
-            <br /><br />
-            Essas aventuras fotográficas, repletas de risos, descobertas e boas energias, inspiraram os amigos a convidarem você a também registrar os seus próprios momentos especiais. Seja para celebrar o cotidiano, criar uma galeria pessoal ou simplesmente capturar a beleza do instante, estamos aqui para ajudar você a transformar suas experiências em lembranças inesquecíveis.
+            <strong>Pelas Ruas</strong> é mais que um nome, é um convite para descobrir a beleza oculta na vida urbana. Cada fotografia é um fragmento de história, uma tentativa de congelar aqueles instantes únicos que fazem a vida valer a pena.
           </p>
         </div>
       </div>
-    </section>
-
-    <section class="parallax-section d-flex justify-content-center align-items-center text-center">
-      <h2 class="text-white display-5 fw-semibold shadow-text">“A beleza está nos detalhes do cotidiano.”</h2>
     </section>
 
     <section id="fotos" class="container my-5">
@@ -187,56 +188,56 @@
         <div class="gallery-item col-6 col-md-3">
           <a href="img/Luiz5.webp" data-fancybox="galeria7" data-caption="Fotografia tirada por Luiz">
             <div class="tilt-cell">
-              <img src="img/Luiz5.webp" alt="Folhas iluminadas pelo sol, fotografia de Luiz" class="img-fluid rounded">
+              <img src="img/Luiz5.webp" alt="Folhas iluminadas pelo sol, fotografia de Luiz" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3">
           <a href="img/Will5.webp" data-fancybox="galeria7" data-caption="Fotografia por Willian">
             <div class="tilt-cell">
-              <img src="img/Will5.webp" alt="Cafeteira francesa em cafeteria aconchegante, fotografia por Willian" class="img-fluid rounded">
+              <img src="img/Will5.webp" alt="Cafeteira francesa em cafeteria aconchegante, fotografia por Willian" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3">
           <a href="img/Will3.webp" data-fancybox="galeria7" data-caption="Fotografia por Willian">
             <div class="tilt-cell">
-              <img src="img/Will3.webp" alt="Frente de carro estacionado em rua, fotografia por Willian" class="img-fluid rounded">
+              <img src="img/Will3.webp" alt="Frente de carro estacionado em rua, fotografia por Willian" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3 d-none d-sm-block fade-in">
           <a href="img/Luiz1.webp" data-fancybox="galeria7" data-caption="Fotografia tirada por Luiz">
             <div class="tilt-cell">
-              <img src="img/Luiz1.webp" alt="Céu azul com nuvens rosadas ao entardecer, fotografia por Luiz" class="img-fluid rounded">
+              <img src="img/Luiz1.webp" alt="Céu azul com nuvens rosadas ao entardecer, fotografia por Luiz" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3 d-none d-sm-block fade-in">
           <a href="img/Will6.webp" data-fancybox="galeria7" data-caption="Fotografia por Willian">
             <div class="tilt-cell">
-              <img src="img/Will6.webp" alt="Gotas de chuva sobre para-brisa de carro, fotografia por Willian" class="img-fluid rounded">
+              <img src="img/Will6.webp" alt="Gotas de chuva sobre para-brisa de carro, fotografia por Willian" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3 d-none d-sm-block fade-in">
           <a href="img/Will7.webp" data-fancybox="galeria7" data-caption="Fotografia por Willian">
             <div class="tilt-cell">
-              <img src="img/Will7.webp" alt="Carro da polícia em movimento pela rua, fotografia por Willian" class="img-fluid rounded">
+              <img src="img/Will7.webp" alt="Carro da polícia em movimento pela rua, fotografia por Willian" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3 d-none d-sm-block fade-in">
           <a href="img/Will4.webp" data-fancybox="galeria7" data-caption="Fotografia por Willian">
             <div class="tilt-cell">
-              <img src="img/Will4.webp" alt="Vista noturna da cidade iluminada, fotografia por Willian" class="img-fluid rounded">
+              <img src="img/Will4.webp" alt="Vista noturna da cidade iluminada, fotografia por Willian" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
         <div class="gallery-item col-6 col-md-3 d-none d-sm-block fade-in">
           <a href="img/Luiz7.webp" data-fancybox="galeria7" data-caption="Fotografia tirada por Luiz">
             <div class="tilt-cell">
-              <img src="img/Luiz7.webp" alt="Entardecer com luz do sol iluminando coqueiros, fotografia por Luiz" class="img-fluid rounded">
+              <img src="img/Luiz7.webp" alt="Entardecer com luz do sol iluminando coqueiros, fotografia por Luiz" class="img-fluid rounded" loading="lazy">
             </div>
           </a>
         </div>
@@ -252,15 +253,15 @@
       </p>
       <div class="photo-gallery">
         <div class="photo-reveal">
-          <img src="img/LuizH.jpg" alt="Luiz Henrique" class="reveal-image" />
+          <img src="img/LuizH.jpg" alt="Luiz Henrique" class="reveal-image" loading="lazy" />
           <p class="caption mt-3">Fotógrafo <br> Luiz</p>
         </div>
         <div class="photo-reveal">
-          <img src="img/Willian.jpg" alt="Willian Villares" class="reveal-image" />
+          <img src="img/Willian.jpg" alt="Willian Villares" class="reveal-image" loading="lazy" />
           <p class="caption mt-3">Fotógrafo <br> Willian</p>
         </div>
         <div class="photo-reveal">
-          <img src="img/Thays.jpg" alt="Thays Henriques" class="reveal-image" />
+          <img src="img/Thays.jpg" alt="Thays Henriques" class="reveal-image" loading="lazy" />
           <p class="caption mt-3">Desenvolvedora <br> Thays</p>
         </div>
       </div>
@@ -272,7 +273,7 @@
       <div class="row gy-4">
 
         <div class="col-md-4 text-center text-md-start">
-          <img src="img/logo_f5f5f5.svg" alt="Pelas Ruas" height="60" />
+          <img src="img/logo_f5f5f5.svg" alt="Pelas Ruas" height="60" loading="lazy" />
           <p class="mt-3 small">
             Fotografia de rua capturando momentos reais
           </p>
@@ -319,11 +320,10 @@
 
         <p class="mb-0">
           Desenvolvido por
-          <a href="https://www.thayshenriques.com/" target="_blank" class="text-light text-decoration-none">
+          <a href="https://thayshds.netlify.app/" target="_blank" class="text-light text-decoration-none">
             Thays Henriques
           </a>
           •
-          <a href="https://www.thayshenriques.com/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">
           <a href="https://www.instagram.com/thayshds/" target="_blank" class="text-light text-decoration-none">
             @thayshds
           </a>
@@ -333,11 +333,11 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js" defer></script>
   <script src="js/script.js" defer></script>
 
 </body>
