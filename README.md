@@ -19,16 +19,12 @@ O Pelas Ruas é um projeto fotográfico colaborativo criado por amigos apaixonad
 
 ## Como executar o projeto
 - Clone o repositório
-git clone https://github.com/seu-usuario/pelas-ruas.git
+git clone https://github.com/ThaysHDS/pelas-ruas.git
 
 - Acesse a pasta
 cd pelas-ruas
 
-- Instale as dependências
-npm install
-
-- Rode o projeto
-npm run dev
+- Abra o arquivo index.html em seu navegador
 
 ## Status do projeto
 Finalizado.
